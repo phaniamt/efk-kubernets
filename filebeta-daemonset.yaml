@@ -103,7 +103,6 @@ spec:
           path: /var/run/docker.sock
           type: ""
         name: varrundockersock
-  templateGeneration: 1
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
