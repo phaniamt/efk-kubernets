@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: efk-filebeat
+  name: efk-filebeat-cluster-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: efk-filebeat-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: efk-filebeat
+  namespace: efk
