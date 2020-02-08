@@ -108,11 +108,6 @@ spec:
         - mountPath: /usr/share/elasticsearch/data
           name: elasticsearch-master
       dnsPolicy: ClusterFirst
-      volumes:
-      - name: elasticsearch-master
-        nfs:
-          server: fs-xxxxx.efs.eu-west-1.amazonaws.com
-          path: /elasticsearch
       initContainers:
       - command:
         - sysctl
@@ -129,5 +124,15 @@ spec:
       terminationGracePeriodSeconds: 120
   updateStrategy:
     type: RollingUpdate
-
+  volumeClaimTemplates:
+  - metadata:
+      name: elasticsearch-master
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 30Gi
+      storageClassName: test
+      volumeMode: Filesystem
 
